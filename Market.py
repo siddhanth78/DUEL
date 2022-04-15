@@ -25,6 +25,14 @@ menu = disp.menu(title = "Main Menu",
                 reuse = 1
                     )       #main menu
 
+chambers = disp.menu("Synthesis chamber",
+                            ["Random (Price: 50000 points)",   #synthesis chamber menu (to buy characters)
+                            "Bronze (Price: 15000 points)",
+                            "Silver (Price: 38000 points)",
+                            "Gold (Price: 79000 points)",
+                            "Platinum (Price: 155000 points)"],
+                            1)
+
 #-----------------------------------------------------------------------------------
 os.system('cls')
 
@@ -75,7 +83,10 @@ while True:
                         m = f"Rank: {x[1]}\nAttack: {x[2]}\nHealth: {x[3]}")
                     
     elif(choice == "2"):
-        print("COMING SOON\n")
+        print(chambers)
+        while True:
+            select_chamber = input("Enter your choice: ")
+            break
     elif(choice == "3"):
         confirm = disp.yesno()
         
