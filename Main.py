@@ -7,7 +7,7 @@ import display_module as disp
 
 path = os.getcwd() #current working dir
 
-options = ['Story', 'Duel', 'Market', 'Trade', 'Exit', 'Logout'] #menu options
+options = ['Story', 'Duel', 'Market', 'Characters', 'Exit', 'Logout'] #menu options
 
 menu = disp.menu(title = "Main Menu",
                 items = options,
