@@ -7,7 +7,7 @@ import display_module as disp
 
 path = os.getcwd() #current working dir
 
-options = ['Story', 'Duel', 'Market', 'Trade', 'Exit'] #menu options
+options = ['Story', 'Duel', 'Market', 'Trade', 'Exit', 'Logout'] #menu options
 
 menu = disp.menu(title = "Main Menu",
                 items = options,
@@ -35,6 +35,16 @@ while True:
         
         if(confirm == 1):
             break
+        elif(confirm == 0):
+            continue
+        elif(confirm == 2):
+            disp.error("Invalid choice.")
+            continue
+    elif(choice == "5"):
+        confirm = disp.custom_yesno("Are you sure you want to log out?")
+        
+        if(confirm == 1):
+            os.system(path+"\\Start.py")
         elif(confirm == 0):
             continue
         elif(confirm == 2):
