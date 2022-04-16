@@ -23,7 +23,7 @@ path = os.getcwd() #current working dir
 while True:
     os.system('cls')
     player_id = input("Enter your player ID: ")
-    player_id = player_id.upper()
+    player_id = player_id.upper().strip()
 
     try:
         cur.execute(f"select username, passwd from \"siddhanth78/MainGame\".player_info where p_id = '{player_id}'")
@@ -57,5 +57,9 @@ while True:
 
 print("\nWelcome to DUEL!")
 time.sleep(1)
+
+file = open(path+"\\playerID.txt", 'w')
+file.write(player_id)
+file.close()
 
 os.system(path+"\\Main.py")
