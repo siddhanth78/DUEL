@@ -1,5 +1,6 @@
 import os
 import os.path
+import display_module as disp
 
 #-----------------------------------------------------------------------------------
 
@@ -19,4 +20,4 @@ while True:
     elif(choice == "2"):
         os.system(path+"\\SignUp.py")
     else:
-        print("\nInvalid choice.")
+        disp.error("Invalid choice.")
