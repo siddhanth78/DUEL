@@ -21,6 +21,8 @@ silver_chars = [] #silver characters
 gold_chars = [] #gold characters
 platinum_chars = [] #platinum characters
 
+player_chars = [] #player's characters
+
 player_cred = [] #player info
 
 path = os.getcwd() #current working dir
@@ -43,7 +45,8 @@ chambers = disp.menu("Synthesis chamber",
                             "Bronze (Price: 20000 points)",
                             "Silver (Price: 39500 points)",
                             "Gold (Price: 79000 points)",
-                            "Platinum (Price: 155000 points)"],
+                            "Platinum (Price: 155000 points)",
+                            "Exit"],
                             1)
 
 #-----------------------------------------------------------------------------------
@@ -55,6 +58,11 @@ for x in cur.fetchall():
     player_cred.append(x)
     
 points = player_cred[0][0]
+
+cur.execute(f"select ch_id, attack, health from \"siddhanth78/MainGame\".player_characters where p_id = '{player_id}'")
+
+for x in cur.fetchall():
+    player_chars.append(x)
 
 cur.execute(f"select ch_id, name, rank, attack, health from \"siddhanth78/MainGame\".characters")
 
@@ -113,8 +121,9 @@ while True:
                         m = f"Rank: {x[1]}\nAttack: {x[2]}\nHealth: {x[3]}")
                     
     elif(choice == "2"):
-        print(chambers)
         while True:
+            print(chambers)
+            print(f"Points available: {points}\n")
             select_chamber = input("Enter your choice: ")   
             
             if(select_chamber == '1'):
@@ -122,7 +131,6 @@ while True:
                     disp.error("Not enough points.")
                     break
                 else:
-                    #points = points - 53000
                     chance = random.random()
                     
                     if(chance < 0.6):
@@ -138,37 +146,39 @@ while True:
                     disp.error("Not enough points.")
                     break
                 else:
-                    #points = points - 20000
                     chance = random.random()
-                    
                     random_char = random.choice(bronze_chars)
             elif(select_chamber == '3'):
                 if(points < 39500):
                     disp.error("Not enough points.")
                     break
                 else:
-                    #points = points - 39500
                     chance = random.random()
-                    
                     random_char = random.choice(silver_chars)
             elif(select_chamber == '4'):
                 if(points < 79000):
                     disp.error("Not enough points.")
                     break
                 else:
-                    #points = points - 79000
                     chance = random.random()
-                    
                     random_char = random.choice(gold_chars)
             elif(select_chamber == '5'):
                 if(points < 155000):
                     disp.error("Not enough points.")
                     break
                 else:
-                    #points = points - 155000
                     chance = random.random()
-                    
                     random_char = random.choice(platinum_chars)
+            elif(select_chamber == '6'):
+                confirm = disp.yesno()
+        
+                if(confirm == 1):
+                    break
+                elif(confirm == 0):
+                    continue
+                elif(confirm == 2):
+                    disp.error("Invalid choice.")
+                    continue
             else:
                 disp.error("Invalid choice.")
                 break
@@ -179,8 +189,21 @@ while True:
                 disp.error("Synthesizer not working as intended. Try again later.")
                 break
             else:
+                if(select_chamber == '1'):
+                    points = points - 53000
+                elif(select_chamber == '2'):
+                    points = points - 20000
+                elif(select_chamber == '3'):
+                    points = points - 39500
+                elif(select_chamber == '4'):
+                    points = points - 79000
+                elif(select_chamber == '5'):
+                    points = points - 155000
+                else:
+                    pass
                 disp.box("SYNTHESIS COMPLETE", f"{random_char[1]}\nRank: {random_char[2]}")
-                break
+                cur.execute(f"update \"siddhanth78/MainGame\".player_info set points = {points} where p_id = '{player_id}'")
+                continue
                     
     elif(choice == "3"):
         confirm = disp.yesno()
