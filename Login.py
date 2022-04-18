@@ -18,12 +18,21 @@ player_cred = [] #credentials list
 
 path = os.getcwd() #current working dir
 
+file = open(path+"\\playerID.txt", 'r')   #get player ID
+player_id = file.read()
+file.close()
+
 #-----------------------------------------------------------------------------------
 
 while True:
     os.system('cls')
-    player_id = input("Enter your player ID: ")
-    player_id = player_id.upper().strip()
+    if(player_id == ''):
+        player_id = input("Enter your player ID: ")
+        player_id = player_id.upper().strip()
+    else:
+        print("Obtaining player ID...")
+        time.sleep(0.5)
+        pass
 
     try:
         cur.execute(f"select username, passwd from \"siddhanth78/MainGame\".player_info where p_id = '{player_id}'")
@@ -32,25 +41,29 @@ while True:
     
         if(player_cred == []):
             disp.error("Invalid player ID.")
-            time.sleep(1)
+            file = open(path+"\\playerID.txt", 'w')
+            file.write('')
+            file.close()
             continue
         else:
             pass
     except:
         disp.error("Invalid player ID.")
-        time.sleep(1)
+        file = open(path+"\\playerID.txt", 'w')
+        file.write('')
+        file.close()
         continue
     else:
         break
 
+print()
+
 while True:
-    os.system('cls')
     user = input("Enter username: ")
     passwd = pwinput.pwinput(prompt = "Enter password: ", mask = "*")
     
     if(user!=player_cred[0][0] or passwd!=player_cred[0][1]):
         disp.error("Invalid username or password.")
-        time.sleep(1)
         continue
     else:
         break

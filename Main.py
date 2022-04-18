@@ -29,21 +29,26 @@ while True:
     elif(choice == "3"):
         os.system(path+"\\Market.py")
     elif(choice == "4"):
-        print("COMING SOON\n")
+        os.system(path+"\\Characters.py")
     elif(choice == "5"):
         confirm = disp.yesno()
         
         if(confirm == 1):
-            break
+            os.system(path+"\\Login.py")
         elif(confirm == 0):
             continue
         elif(confirm == 2):
             disp.error("Invalid choice.")
             continue
-    elif(choice == "5"):
+    elif(choice == "6"):
         confirm = disp.custom_yesno("Are you sure you want to log out?")
         
         if(confirm == 1):
+            file = open(path+"\\playerID.txt", 'w')
+            file.write('')
+            file.close()
+            print("\nLogout complete.")
+            time.sleep(0.5)
             os.system(path+"\\Start.py")
         elif(confirm == 0):
             continue

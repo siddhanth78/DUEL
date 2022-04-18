@@ -1,6 +1,5 @@
 import os
 import os.path
-import time
 import bitdotio
 import display_module as disp
 import nltk.tokenize as tokenize
@@ -28,7 +27,7 @@ path = os.getcwd() #current working dir
 
 options = ['Search', 'Buy', 'Exit'] #menu options
 
-menu = disp.menu(title = "Main Menu",
+menu = disp.menu(title = "Market",
                 items = options,
                 reuse = 1
                     )       #main menu
@@ -134,9 +133,6 @@ while True:
                         random_char = random.choice(gold_chars)
                     elif(0.95 <= chance <= 1):
                         random_char = random.choice(platinum_chars)
-                        
-                    print(random_char)
-                    break
             elif(select_chamber == '2'):
                 if(points < 20000):
                     disp.error("Not enough points.")
@@ -146,9 +142,6 @@ while True:
                     chance = random.random()
                     
                     random_char = random.choice(bronze_chars)
-                        
-                    print(random_char)
-                    break
             elif(select_chamber == '3'):
                 if(points < 39500):
                     disp.error("Not enough points.")
@@ -158,9 +151,6 @@ while True:
                     chance = random.random()
                     
                     random_char = random.choice(silver_chars)
-                        
-                    print(random_char)
-                    break
             elif(select_chamber == '4'):
                 if(points < 79000):
                     disp.error("Not enough points.")
@@ -170,9 +160,6 @@ while True:
                     chance = random.random()
                     
                     random_char = random.choice(gold_chars)
-                        
-                    print(random_char)
-                    break
             elif(select_chamber == '5'):
                 if(points < 155000):
                     disp.error("Not enough points.")
@@ -182,11 +169,17 @@ while True:
                     chance = random.random()
                     
                     random_char = random.choice(platinum_chars)
-                        
-                    print(random_char)
-                    break
             else:
                 disp.error("Invalid choice.")
+                break
+            
+            try:
+                cur.execute(f"insert into \"siddhanth78/MainGame\".player_characters values('{player_id}', '{random_char[0]}', {random_char[3]}, {random_char[4]}, 1)")
+            except:
+                disp.error("Synthesizer not working as intended. Try again later.")
+                break
+            else:
+                disp.box("SYNTHESIS COMPLETE", f"{random_char[1]}\nRank: {random_char[2]}")
                 break
                     
     elif(choice == "3"):
