@@ -84,7 +84,7 @@ for x in char_list:
             m = f"Rank: {x[2]}\nAttack: {x[3]}\nHealth: {x[4]}")
             
 
-print("Characters ^^^")
+print("Available characters ^^^")
 
 while True:
     print(menu)
