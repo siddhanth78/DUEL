@@ -90,6 +90,7 @@ while True:
     break
  
 cur.execute(f"insert into \"siddhanth78/MainGame\".player_info values('{player_id}', '{user}', '{passwd}', 0, 0)")
+conn.commit()
 print("\nSign up complete.\n")
 
 os.system(path+"\\Start.py")

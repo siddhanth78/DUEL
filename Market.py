@@ -4,6 +4,7 @@ import bitdotio
 import display_module as disp
 import nltk.tokenize as tokenize
 import random
+from pprint import pprint
 
 #-----------------------------------------------------------------------------------
 
@@ -62,7 +63,7 @@ points = player_cred[0][0]
 cur.execute(f"select ch_id, attack, health from \"siddhanth78/MainGame\".player_characters where p_id = '{player_id}'")
 
 for x in cur.fetchall():
-    player_chars.append(x)
+    player_chars.append(x[0])
 
 cur.execute(f"select ch_id, name, rank, attack, health from \"siddhanth78/MainGame\".characters")
 
@@ -182,9 +183,36 @@ while True:
             else:
                 disp.error("Invalid choice.")
                 break
+                
+            dupe_flag = False
+            
+            if(random_char[0] in player_chars):
+                random_char_list = list(random_char)
+                
+                if(random_char_list[2] == 'bronze'):
+                    random_char_list[3] = random_char_list[3] + 20
+                    random_char_list[4] = random_char_list[4] + 200
+                elif(random_char_list[2] == 'silver'):
+                    random_char_list[3] = random_char_list[3] + 70
+                    random_char_list[4] = random_char_list[4] + 450
+                elif(random_char_list[2] == 'gold'):
+                    random_char_list[3] = random_char_list[3] + 130
+                    random_char_list[4] = random_char_list[4] + 900
+                elif(random_char_list[2] == 'platinum'):
+                    random_char_list[3] = random_char_list[3] + 200
+                    random_char_list[4] = random_char_list[4] + 1500
+                    
+                random_char = tuple(random_char_list)
+                
+                dupe_flag = True
             
             try:
-                cur.execute(f"insert into \"siddhanth78/MainGame\".player_characters values('{player_id}', '{random_char[0]}', {random_char[3]}, {random_char[4]}, 1)")
+                if(dupe_flag == False):
+                    cur.execute(f"insert into \"siddhanth78/MainGame\".player_characters values('{player_id}', '{random_char[0]}', {random_char[3]}, {random_char[4]}, 1)")
+                    conn.commit()
+                elif(dupe_flag == True):
+                    cur.execute(f"update \"siddhanth78/MainGame\".player_characters set attack = {random_char[3]}, health = {random_char[4]} where p_id = '{player_id}' and ch_id = '{random_char[0]}'")
+                    conn.commit()
             except:
                 disp.error("Synthesizer not working as intended. Try again later.")
                 break
@@ -201,8 +229,17 @@ while True:
                     points = points - 155000
                 else:
                     pass
-                disp.box("SYNTHESIS COMPLETE", f"{random_char[1]}\nRank: {random_char[2]}")
+                
+                pprint(player_chars)
+                print()
+                print(random_char)
+                
+                if(dupe_flag == True):
+                    disp.box("SYNTHESIS COMPLETE", f"DUPLICATE:\n{random_char[1]}\nRank: {random_char[2]}")
+                elif(dupe_flag == False):
+                    disp.box("SYNTHESIS COMPLETE", f"{random_char[1]}\nRank: {random_char[2]}")
                 cur.execute(f"update \"siddhanth78/MainGame\".player_info set points = {points} where p_id = '{player_id}'")
+                conn.commit()
                 continue
                     
     elif(choice == "3"):
