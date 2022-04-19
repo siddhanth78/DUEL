@@ -4,7 +4,6 @@ import bitdotio
 import display_module as disp
 import nltk.tokenize as tokenize
 import random
-from pprint import pprint
 
 #-----------------------------------------------------------------------------------
 
