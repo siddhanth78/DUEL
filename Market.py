@@ -99,7 +99,7 @@ while True:
         while True:
             search = input("Enter <field> <query> (Enter 'quit' to exit search): ")
             
-            if(search.lower() == 'quit'):
+            if(search.lower().strip() == 'quit'):
                 print()
                 break
                 
