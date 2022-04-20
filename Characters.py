@@ -194,6 +194,10 @@ while True:
                 
             disp.box(selection_tokens_filter[0],
                     f"Rank: {selection_tokens_filter[1]}\nLevel: {selection_tokens_filter[2]}\nAttack: {selection_tokens_filter[3]}\nHealth: {selection_tokens_filter[4]}")
+                    
+            if(selection_tokens_filter[2] == 50):
+                disp.info("Character maxed out.")
+                continue
                 
             b = bitdotio.bitdotio(api)
             conn = b.get_connection()
