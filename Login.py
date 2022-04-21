@@ -26,7 +26,7 @@ file.close()
 
 while True:
     os.system('cls')
-    if(player_id == ''):
+    if(player_id.strip() == ''):
         player_id = input("Enter your player ID: ")
         player_id = player_id.upper().strip()
     else:
