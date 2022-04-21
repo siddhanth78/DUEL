@@ -27,12 +27,15 @@ file.close()
 while True:
     os.system('cls')
     if(player_id.strip() == ''):
-        player_id = input("Enter your player ID: ")
+        player_id = input("Enter your player ID (Enter 'quit' to exit): ")
         player_id = player_id.upper().strip()
     else:
         print("Obtaining player ID...")
         time.sleep(0.5)
         pass
+        
+    if(player_id.lower().strip() == 'quit'):
+        os.system(path+"\\Start.py")
 
     try:
         cur.execute(f"select username, passwd from \"siddhanth78/MainGame\".player_info where p_id = '{player_id}'")
@@ -44,6 +47,7 @@ while True:
             file = open(path+"\\playerID.txt", 'w')
             file.write('')
             file.close()
+            player_id = ''
             continue
         else:
             pass
@@ -52,6 +56,7 @@ while True:
         file = open(path+"\\playerID.txt", 'w')
         file.write('')
         file.close()
+        player_id = ''
         continue
     else:
         break

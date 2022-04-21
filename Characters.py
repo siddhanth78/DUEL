@@ -172,7 +172,8 @@ while True:
                                     char_menu_options, 1)
         
             print(char_menu)
-            print(f"Points available: {points}\n")
+            print(f"Points available: {points}")
+            print(f"Runes available: {runes}\n")
             upgrade_choice = input("Enter your choice (Enter 'quit' to exit upgrade): ")
             
             if(upgrade_choice.lower().strip() == 'quit'):

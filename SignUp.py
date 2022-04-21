@@ -42,12 +42,15 @@ while True:
     
     for x in cur.fetchall():
         playerid_list.append(x)
-    
-    for x in playerid_list[0]:
-        if(player_id == x):
-            player_id = ""
-            playerid_flag = True
-            break
+        
+    if(playerid_list == []):
+        pass
+    else:
+        for x in playerid_list[0]:
+            if(player_id == x):
+                player_id = ""
+                playerid_flag = True
+                break
     
     if(playerid_flag == True):
         player_id = ""
@@ -65,11 +68,14 @@ while True:
         for x in cur.fetchall():
             player_cred.append(x)
             
-        for x in player_cred:
-            if(user == x[0]):
-                print("Username already in use.\n")
-                player_user_flag = True
-                break
+        if(player_cred == []):
+            pass
+        else:
+            for x in player_cred:
+                if(user == x[0]):
+                    print("Username already in use.\n")
+                    player_user_flag = True
+                    break
         
         if(player_user_flag == True):
             player_user_flag = False
@@ -92,6 +98,11 @@ while True:
 cur.execute(f"insert into \"siddhanth78/MainGame\".player_info values('{player_id}', '{user}', '{passwd}', 0, 0)")
 cur.execute(f"insert into \"siddhanth78/MainGame\".player_progress values('{player_id}', 0, 0, 0, '-', '-', '-', '-')")
 conn.commit()
+
+file = open(path+"\\playerID.txt", 'w')
+file.write(player_id)
+file.close()
+
 print("\nSign up complete.\n")
 
 os.system(path+"\\Start.py")
