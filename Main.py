@@ -23,7 +23,7 @@ while True:
     choice = input("Enter your choice: ")
     
     if(choice == "1"):
-        print("COMING SOON\n")
+        os.system(path+"\\Story.py")
     elif(choice == "2"):
         print("COMING SOON\n")
     elif(choice == "3"):

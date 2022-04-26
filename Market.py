@@ -105,9 +105,13 @@ while True:
                 
             tokens = tokenize.word_tokenize(search)
             searchlist = []
+            
+            print(tokens)
         
-            if(tokens[0].lower() == "name" or tokens[0].lower == "rank"):
+            if(tokens[0].lower() == "name"):
                 cur.execute(f"select name, rank, attack, health from \"siddhanth78/MainGame\".characters where name like '%{tokens[1]}%'")
+            elif(tokens[0].lower() == "rank"):
+                cur.execute(f"select name, rank, attack, health from \"siddhanth78/MainGame\".characters where rank like '%{tokens[1]}%'")
             else:
                 disp.error("Invalid field.\nValid fields: name, rank")
                 continue
