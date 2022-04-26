@@ -145,7 +145,7 @@ def move(you_curloc, you_prevloc):
     print(df)
     
     if(tork_flag == 1):
-        print("\n"+random.choice(tork_dialogue))
+        print("\nTORK: "+random.choice(tork_dialogue))
     else:
         pass
         
