@@ -4,6 +4,7 @@ import bitdotio
 import display_module as disp
 import pandas as pd
 import keyboard
+import random
 
 #-----------------------------------------------------------------------------------
 
@@ -128,11 +129,32 @@ def right(you_curloc, you_prevloc):
     move(you_curloc, you_prevloc)
     
 def move(you_curloc, you_prevloc):
-    df.loc[you_curloc[0]][you_curloc[1]] = you
-    df.loc[you_prevloc[0]][you_prevloc[1]] = '----------'
+    tork_flag = 0
+    tork_dialogue = ["Watch it, boy!", "What do you need?", "The exit isn't here.", "Beautiful day, eh? Now leave."]
+    if(df.loc[you_curloc[0]][you_curloc[1]] == tork):
+        df.loc[you_prevloc[0]][you_prevloc[1]] = you
+        df.loc[you_curloc[0]][you_curloc[1]] = tork
+        you_curloc[0] = you_prevloc[0]
+        you_curloc[1] = you_prevloc[1]
+        tork_flag = 1
+    else:
+        df.loc[you_curloc[0]][you_curloc[1]] = you
+        df.loc[you_prevloc[0]][you_prevloc[1]] = '----------'
+        
     os.system('cls')
     print(df)
+    
+    if(tork_flag == 1):
+        print("\n"+random.choice(tork_dialogue))
+    else:
+        pass
+        
     if(you_curloc[0] == 0 and you_curloc[0] == 0):
+        input()
+        input()
+        input()
+        input()
+        input()
         os.system(path+"\\Main.py")
 
 keyboard.add_hotkey('up arrow', lambda:up(you_curloc, you_prevloc))
@@ -141,6 +163,8 @@ keyboard.add_hotkey('down arrow', lambda:down(you_curloc, you_prevloc))
 keyboard.add_hotkey('right arrow', lambda:right(you_curloc, you_prevloc))
 
 os.system('cls')
+
+print("\nUSE ARROWS TO MOVE.\n")
 print(df)
 
 while True:
