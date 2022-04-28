@@ -16,7 +16,7 @@ while True:
         cur = conn.cursor()
     except:
         disp.error("Check your internet connection.")
-        time.sleep(1)
+        time.sleep(3)
         continue
     else:
         break
@@ -78,7 +78,7 @@ while True:
                 cur = conn.cursor()
             except:
                 disp.error("Check your internet connection.")
-                time.sleep(1)
+                time.sleep(3)
                 continue
             else:
                 break
@@ -105,7 +105,7 @@ while True:
                     cur = conn.cursor()
                 except:
                     disp.error("Check your internet connection.")
-                    time.sleep(1)
+                    time.sleep(3)
                     continue
                 else:
                     break
@@ -159,7 +159,7 @@ while True:
                     cur = conn.cursor()
                 except:
                     disp.error("Check your internet connection.")
-                    time.sleep(1)
+                    time.sleep(3)
                     continue
                 else:
                     break
@@ -213,6 +213,18 @@ while True:
             if(upgrade_choice not in upgrades.keys()):
                 disp.error("Invalid choice.")
                 continue
+                
+            while True:
+                try:
+                    b = bitdotio.bitdotio(api)
+                    conn = b.get_connection()
+                    cur = conn.cursor()
+                except:
+                    disp.error("Check your internet connection.")
+                    time.sleep(3)
+                    continue
+                else:
+                    break
                 
             selection = upgrades[upgrade_choice]
             selection_tokens = tokenize.word_tokenize(selection)
@@ -409,7 +421,7 @@ while True:
                     cur = conn.cursor()
                 except:
                     disp.error("Check your internet connection.")
-                    time.sleep(1)
+                    time.sleep(3)
                     continue
                 else:
                     break

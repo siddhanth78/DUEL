@@ -14,7 +14,7 @@ while True:
         cur = conn.cursor()
     except:
         disp.error("Check your internet connection.")
-        time.sleep(1)
+        time.sleep(3)
         continue
     else:
         break
