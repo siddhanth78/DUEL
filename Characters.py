@@ -8,10 +8,17 @@ import nltk.tokenize as tokenize
 
 api = "3drdz_rgsnUgWm8bUjMzT5enE3Kdv"
 
-b = bitdotio.bitdotio(api) #establish connection using API key
-
-conn = b.get_connection() #connect to db
-cur = conn.cursor() #cursor
+while True:
+    try:
+        b = bitdotio.bitdotio(api)
+        conn = b.get_connection()
+        cur = conn.cursor()
+    except:
+        disp.error("Check your internet connection.")
+        time.sleep(1)
+        continue
+    else:
+        break
 
 char_list = [] #characters list
 
@@ -63,15 +70,21 @@ while True:
     choice = input("Enter your choice: ")
     
     if(choice == '1'):
-        b = bitdotio.bitdotio(api)
-        conn = b.get_connection()
-        cur = conn.cursor()
+        while True:
+            try:
+                b = bitdotio.bitdotio(api)
+                conn = b.get_connection()
+                cur = conn.cursor()
+            except:
+                disp.error("Check your internet connection.")
+                time.sleep(1)
+                continue
+            else:
+                break
+                
         disp.warn("Search is case-sensitive.")
         
         while True:
-            b = bitdotio.bitdotio(api)
-            conn = b.get_connection()
-            cur = conn.cursor()
             search = input("Enter <field> <query> (Enter 'quit' to exit search): ")
             
             if(search.lower().strip() == 'quit'):
@@ -84,9 +97,17 @@ while True:
             all_info = []
             results = []
             
-            b = bitdotio.bitdotio(api)
-            conn = b.get_connection()
-            cur = conn.cursor()
+            while True:
+                try:
+                    b = bitdotio.bitdotio(api)
+                    conn = b.get_connection()
+                    cur = conn.cursor()
+                except:
+                    disp.error("Check your internet connection.")
+                    time.sleep(1)
+                    continue
+                else:
+                    break
         
             if(tokens[0].lower() == "name" or tokens[0].lower() == "rank"):
                 cur.execute(f"select ch_id, attack, health from \"siddhanth78/MainGame\".player_characters where p_id = '{player_id}'")
@@ -130,9 +151,17 @@ while True:
         
         while True:
         
-            b = bitdotio.bitdotio(api)
-            conn = b.get_connection()
-            cur = conn.cursor()
+            while True:
+                try:
+                    b = bitdotio.bitdotio(api)
+                    conn = b.get_connection()
+                    cur = conn.cursor()
+                except:
+                    disp.error("Check your internet connection.")
+                    time.sleep(1)
+                    continue
+                else:
+                    break
             
             player_currency = []
             
@@ -372,9 +401,17 @@ while True:
                         selection_tokens_filter[4] = selection_tokens_filter[4] + 1100
                         
                         
-            b = bitdotio.bitdotio(api)
-            conn = b.get_connection()
-            cur = conn.cursor()
+            while True:
+                try:
+                    b = bitdotio.bitdotio(api)
+                    conn = b.get_connection()
+                    cur = conn.cursor()
+                except:
+                    disp.error("Check your internet connection.")
+                    time.sleep(1)
+                    continue
+                else:
+                    break
             
             cur.execute(f"update \"siddhanth78/MainGame\".player_info set runes = {runes} where p_id = '{player_id}'")
             cur.execute(f"update \"siddhanth78/MainGame\".player_info set points = {points} where p_id = '{player_id}'")

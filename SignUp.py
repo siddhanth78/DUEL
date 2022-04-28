@@ -10,10 +10,17 @@ import random
 
 api = "3drdz_rgsnUgWm8bUjMzT5enE3Kdv"
 
-b = bitdotio.bitdotio(api) #establish connection using API key
-
-conn = b.get_connection() #connect to db
-cur = conn.cursor() #cursor
+while True:
+    try:
+        b = bitdotio.bitdotio(api)
+        conn = b.get_connection()
+        cur = conn.cursor()
+    except:
+        disp.error("Check your internet connection.")
+        time.sleep(1)
+        continue
+    else:
+        break
 
 player_cred = [] #credentials list
 
@@ -94,6 +101,18 @@ while True:
             continue
 
     break
+    
+while True:
+    try:
+        b = bitdotio.bitdotio(api)
+        conn = b.get_connection()
+        cur = conn.cursor()
+    except:
+        disp.error("Check your internet connection.")
+        time.sleep(1)
+        continue
+    else:
+        break
  
 cur.execute(f"insert into \"siddhanth78/MainGame\".player_info values('{player_id}', '{user}', '{passwd}', 0, 0)")
 cur.execute(f"insert into \"siddhanth78/MainGame\".player_progress values('{player_id}', 0, 0, 0, '-', '-', '-', '-')")

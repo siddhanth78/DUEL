@@ -9,11 +9,18 @@ import display_module as disp
 
 api = "3drdz_rgsnUgWm8bUjMzT5enE3Kdv"
 
-b = bitdotio.bitdotio(api) #establish connection using API key
-
-conn = b.get_connection() #connect to db
-cur = conn.cursor() #cursor
-
+while True:
+    try:
+        b = bitdotio.bitdotio(api)
+        conn = b.get_connection()
+        cur = conn.cursor()
+    except:
+        disp.error("Check your internet connection.")
+        time.sleep(1)
+        continue
+    else:
+        break
+        
 player_cred = [] #credentials list
 
 path = os.getcwd() #current working dir

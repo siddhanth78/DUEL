@@ -9,10 +9,17 @@ import random
 
 api = "3drdz_rgsnUgWm8bUjMzT5enE3Kdv"
 
-b = bitdotio.bitdotio(api) #establish connection using API key
-
-conn = b.get_connection() #connect to db
-cur = conn.cursor() #cursor
+while True:
+    try:
+        b = bitdotio.bitdotio(api)
+        conn = b.get_connection()
+        cur = conn.cursor()
+    except:
+        disp.error("Check your internet connection.")
+        time.sleep(1)
+        continue
+    else:
+        break
 
 char_list = [] #characters list
 
@@ -91,9 +98,18 @@ while True:
     choice = input("Enter your choice: ")
     
     if(choice == "1"):
-        b = bitdotio.bitdotio(api)
-        conn = b.get_connection()
-        cur = conn.cursor()
+        while True:
+            try:
+                b = bitdotio.bitdotio(api)
+                conn = b.get_connection()
+                cur = conn.cursor()
+            except:
+                disp.error("Check your internet connection.")
+                time.sleep(1)
+                continue
+            else:
+                break
+                
         disp.warn("Search is case-sensitive.")
         
         while True:
@@ -128,9 +144,17 @@ while True:
                         m = f"Rank: {x[1]}\nAttack: {x[2]}\nHealth: {x[3]}")
                     
     elif(choice == "2"):
-        b = bitdotio.bitdotio(api)
-        conn = b.get_connection()
-        cur = conn.cursor()
+        while True:
+            try:
+                b = bitdotio.bitdotio(api)
+                conn = b.get_connection()
+                cur = conn.cursor()
+            except:
+                disp.error("Check your internet connection.")
+                time.sleep(1)
+                continue
+            else:
+                break
         
         while True:
             player_chars = []
@@ -223,39 +247,46 @@ while True:
                 elif(random_char[2] == "platinum"):
                     player_chars_list[1] = player_chars_list[1] + 200
                     player_chars_list[2] = player_chars_list[2] + 1500
-            
-            try:
-                if(dupe_flag == False):
-                    cur.execute(f"insert into \"siddhanth78/MainGame\".player_characters values('{player_id}', '{random_char[0]}', {random_char[3]}, {random_char[4]}, 1)")
-                    conn.commit()
-                elif(dupe_flag == True):
-                    cur.execute(f"update \"siddhanth78/MainGame\".player_characters set attack = {player_chars_list[1]} where p_id = '{player_id}' and ch_id = '{random_char[0]}'")
-                    cur.execute(f"update \"siddhanth78/MainGame\".player_characters set health = {player_chars_list[2]} where p_id = '{player_id}' and ch_id = '{random_char[0]}'")
-                    conn.commit()
-            except:
-                disp.error("Synthesizer not working as intended. Try again later.")
-                break
-            else:
-                if(select_chamber == '1'):
-                    points = points - 53000
-                elif(select_chamber == '2'):
-                    points = points - 20000
-                elif(select_chamber == '3'):
-                    points = points - 39500
-                elif(select_chamber == '4'):
-                    points = points - 79000
-                elif(select_chamber == '5'):
-                    points = points - 155000
-                else:
-                    pass
                     
-                if(dupe_flag == True):
-                    disp.box("SYNTHESIS COMPLETE", f"DUPLICATE:\n{random_char[1]}\nRank: {random_char[2]}")
-                elif(dupe_flag == False):
-                    disp.box("SYNTHESIS COMPLETE", f"{random_char[1]}\nRank: {random_char[2]}")
-                cur.execute(f"update \"siddhanth78/MainGame\".player_info set points = {points} where p_id = '{player_id}'")
+            while True:
+                try:
+                    b = bitdotio.bitdotio(api)
+                    conn = b.get_connection()
+                    cur = conn.cursor()
+                except:
+                    disp.error("Check your internet connection.")
+                    time.sleep(1)
+                    continue
+                else:
+                    break
+            
+            if(dupe_flag == False):
+                cur.execute(f"insert into \"siddhanth78/MainGame\".player_characters values('{player_id}', '{random_char[0]}', {random_char[3]}, {random_char[4]}, 1)")
                 conn.commit()
-                continue
+            elif(dupe_flag == True):
+                cur.execute(f"update \"siddhanth78/MainGame\".player_characters set attack = {player_chars_list[1]} where p_id = '{player_id}' and ch_id = '{random_char[0]}'")
+                cur.execute(f"update \"siddhanth78/MainGame\".player_characters set health = {player_chars_list[2]} where p_id = '{player_id}' and ch_id = '{random_char[0]}'")
+                conn.commit()
+            if(select_chamber == '1'):
+                points = points - 53000
+            elif(select_chamber == '2'):
+                points = points - 20000
+            elif(select_chamber == '3'):
+                points = points - 39500
+            elif(select_chamber == '4'):
+                points = points - 79000
+            elif(select_chamber == '5'):
+                points = points - 155000
+            else:
+                pass
+                    
+            if(dupe_flag == True):
+                disp.box("SYNTHESIS COMPLETE", f"DUPLICATE:\n{random_char[1]}\nRank: {random_char[2]}")
+            elif(dupe_flag == False):
+                disp.box("SYNTHESIS COMPLETE", f"{random_char[1]}\nRank: {random_char[2]}")
+            cur.execute(f"update \"siddhanth78/MainGame\".player_info set points = {points} where p_id = '{player_id}'")
+            conn.commit()
+            continue
                     
     elif(choice == "3"):
         confirm = disp.yesno()
