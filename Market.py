@@ -4,7 +4,7 @@ import bitdotio
 import display_module as disp
 import nltk.tokenize as tokenize
 import random
-
+import time
 #-----------------------------------------------------------------------------------
 
 api = "3drdz_rgsnUgWm8bUjMzT5enE3Kdv"

@@ -2,6 +2,7 @@ import os
 import os.path
 import bitdotio
 import display_module as disp
+import time
 #-----------------------------------------------------------------------------------
 
 api = "3drdz_rgsnUgWm8bUjMzT5enE3Kdv"

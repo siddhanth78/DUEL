@@ -5,6 +5,7 @@ import display_module as disp
 import pandas as pd
 import keyboard
 import random
+import time
 
 #-----------------------------------------------------------------------------------
 

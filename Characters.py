@@ -3,6 +3,7 @@ import os.path
 import bitdotio
 import display_module as disp
 import nltk.tokenize as tokenize
+import time
 
 #-----------------------------------------------------------------------------------
 
