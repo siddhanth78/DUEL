@@ -9,6 +9,8 @@ import time
 
 #-----------------------------------------------------------------------------------
 
+path = os.getcwd() #current working dir
+
 api = "3drdz_rgsnUgWm8bUjMzT5enE3Kdv"
 
 while True:
@@ -26,8 +28,6 @@ while True:
 file = open(path+"\\playerID.txt", 'r')   #get player ID
 player_id = file.read()
 file.close()
-
-path = os.getcwd() #current working dir
 
 #-----------------------------------------------------------------------------------
 
