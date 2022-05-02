@@ -33,7 +33,7 @@ file.close()
 
 os.system('cls')
 
-df = pd.DataFrame({'0':['----------','----------','----------','----------','----------','----------','----------','----------','----------','----------'],
+df = pd.DataFrame({'0':['----------','----------','----------','----------','----------','----------','----------','----------','----------','---EXIT---'],
                     '1':['----------','----------','----------','----------','----------','----------','----------','----------','----------','----------'],
                     '2':['----------','----------','----------','----------','----------','----------','----------','----------','----------','----------'],
                     '3':['----------','----------','----------','----------','----------','----------','----------','----------','----------','----------'],
@@ -42,15 +42,15 @@ df = pd.DataFrame({'0':['----------','----------','----------','----------','---
                     '6':['----------','----------','----------','----------','----------','----------','----------','----------','----------','----------'],
                     '7':['----------','----------','----------','----------','----------','----------','----------','----------','----------','----------'],
                     '8':['----------','----------','----------','----------','----------','----------','----------','----------','----------','----------'],
-                    '9':['----------','----------','----------','----------','----------','----------','----------','----------','----------','---EXIT---']})
+                    '9':['----------','----------','----------','----------','----------','----------','----------','----------','----------','----------']})
                     
 mage = "|(- _ -) "
 
 you = "(-_-)"
 
-df.loc[7][1] = mage
+df.loc[7][7] = mage
 
-you_curloc = [0,9]
+you_curloc = [0,0]
 you_prevloc = [0,0]
 
 df.loc[you_curloc[0]][you_curloc[1]] = you
@@ -107,75 +107,56 @@ def move(you_curloc, you_prevloc):
     print(df)
     
     if(mage_flag == 1):
-        
+    
         print("\nMAGE:")
-        print("Ah, you are here.")
-        print("I wanted to meet you.")
-        print("My sources tell me that Nexus was spotted in Derkaan.\n\nPress 'enter' to continue.\n")
+        print("You're late.")
+        print("I assumed you knew your way around HQ.\n\nPress 'enter' to continue.\n")
 
         input()
         
         print("YOU:")
-        print("Isn't Derkaan off-limits?\n\nPress 'enter' to continue.\n")
+        print("Been a while.\n\nPress 'enter' to continue.\n")
 
         input()
         
         print("MAGE:")
-        print("Hence, the discretion.")
-        print("At the headquarters' lab, we are working on synthesis chambers.")
-        print("In fact, we have completed one.")
-        print("As you know, we are not known for our combat capabilities.")
-        print("These chambers will fulfill those needs for us.\n\nPress 'enter' to continue.\n")
+        print("And I assume Tork doesn't know of this.\n\nPress 'enter' to continue.\n")
 
         input()
         
         print("YOU:")
-        print("Why do you need me again?\n\nPress 'enter' to continue.\n")
+        print("No, he doesn't\n\nPress 'enter' to continue.\n")
 
         input()
         
         os.system('cls')
         print(df)
         
-        print("AGAIN, on this island, you are the only one who specializes in neural devices.")
-        print("I want you to help us control the warriors that are synthesized.\n\nPress 'enter' to continue.\n")
-
-        input()
-        
-        print("You want to go face-to-face with Nexus and his army?")
-        print("It's suicide.\n\nPress 'enter' to continue.\n")
-
-        input()
-        
         print("MAGE:")
-        print("These warriors are no ordinary ones.")
-        print("These are specifically built to counter Nexus and the Derkaan army.")
-        print("I know that the Derkaan army is extraordinarily powerful, but trust me, these warriors will come in handy.\n\nPress 'enter' to continue.\n")
+        print("Very well.")
+        print("Here is the test warrior you asked for.")
+        print("You can keep it.\n\nPress 'enter' to continue.\n")
 
         input()
         
         print("YOU:")
-        print("I see.")
-        print("Have you conducted any tests?\n\nPress 'enter' to continue.\n")
+        print("Well, that's very polite of you.\n\nPress 'enter' to continue.\n")
 
         input()
         
         print("MAGE:")
-        print("That is the other reason for wanting to meet you.")
-        print("I need you to go to the outskirts of Derkaan for a test run.\n\nPress 'enter' to continue.\n")
+        print("Appreciate the sarcasm.")
+        print("Dmitri will meet you at the border.")
+        print("Stay safe.\n\nPress 'enter' to continue.\n")
 
-        input
-        
-        os.system('cls')
-        print(df)
+        input()
         
         print("YOU:")
-        print("If I don't come back in a day, it means I'm dead.\n\nPress 'enter' to continue.\n")
+        print("Will do.\n\nPress 'enter' to continue.\n")
 
         input()
         
-        print("MAGE:")
-        print("Well in that case, I wish you the best of luck. Although, you probably won't need it.\n\nPress 'enter' to continue.\n")
+        print("RECEIVE YOUR WARRIOR ON YOUR WAY OUT.\n\nPress 'enter' to continue.\n")
 
         input()
         
@@ -185,7 +166,7 @@ def move(you_curloc, you_prevloc):
     else:
         pass
         
-    if(you_curloc[0] == 9 and you_curloc[1] == 9):
+    if(you_curloc[0] == 0 and you_curloc[1] == 9):
     
         while True:
             try:
@@ -199,9 +180,18 @@ def move(you_curloc, you_prevloc):
             else:
                 break
                 
-        cur.execute(f"update \"siddhanth78/MainGame\".player_progress set story = 2 where p_id = '{player_id}'")
+        ch_ids = []
+                
+        cur.execute(f"select ch_id from \"siddhanth78/MainGame\".player_characters where p_id = '{player_id}'")
+        
+        for x in cur.fetchall():
+            ch_ids.append(x[0])
+                
+        cur.execute(f"update \"siddhanth78/MainGame\".player_progress set story = 3 where p_id = '{player_id}'")
+        if("B001" not in ch_ids):
+            cur.execute(f"insert into \"siddhanth78/MainGame\".player_characters values('{player_id}', 'B001', 10, 200, 1)")
         conn.commit()
-        os.system(path+"\\STORY\\_2_.py")
+        os.system(path+"\\STORY\\_3_.py")
 
 keyboard.add_hotkey('up arrow', lambda:up(you_curloc, you_prevloc))
 keyboard.add_hotkey('left arrow', lambda:left(you_curloc, you_prevloc))

@@ -160,7 +160,7 @@ def move(you_curloc, you_prevloc):
     else:
         pass
         
-    if(you_curloc[0] == 0 and you_curloc[0] == 0):
+    if(you_curloc[0] == 0 and you_curloc[1] == 0):
         while True:
             try:
                 b = bitdotio.bitdotio(api)
