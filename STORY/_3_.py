@@ -99,7 +99,7 @@ def move(you_curloc, you_prevloc):
     
         os.system(path+"\\Main.py")
         
-    elif(you_curloc[0] == 0 and you_curloc[1] == 4):
+    elif(you_curloc[0] == 4 and you_curloc[1] == 0):
     
         while True:
             try:

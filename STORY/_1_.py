@@ -137,7 +137,7 @@ def move(you_curloc, you_prevloc):
         os.system('cls')
         print(df)
         
-        print("AGAIN, on this island, you are the only one who specializes in neural devices.")
+        print("\nAGAIN, on this island, you are the only one who specializes in neural devices.")
         print("I want you to help us control the warriors that are synthesized.\n\nPress 'enter' to continue.\n")
 
         input()
@@ -169,7 +169,7 @@ def move(you_curloc, you_prevloc):
         os.system('cls')
         print(df)
         
-        print("YOU:")
+        print("\nYOU:")
         print("If I don't come back in a day, it means I'm dead.\n\nPress 'enter' to continue.\n")
 
         input()

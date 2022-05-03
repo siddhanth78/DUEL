@@ -47,3 +47,7 @@ if(story_progress == 0):
     os.system(path+"\\STORY\\_0_.py")
 elif(story_progress == 1):
     os.system(path+"\\STORY\\_1_.py")
+elif(story_progress == 2):
+    os.system(path+"\\STORY\\_2_.py")
+elif(story_progress == 3):
+    os.system(path+"\\STORY\\_3_.py")

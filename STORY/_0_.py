@@ -11,6 +11,8 @@ import time
 
 api = "3drdz_rgsnUgWm8bUjMzT5enE3Kdv"
 
+path = os.getcwd() #current working dir
+
 while True:
     try:
         b = bitdotio.bitdotio(api)
@@ -26,8 +28,6 @@ while True:
 file = open(path+"\\playerID.txt", 'r')   #get player ID
 player_id = file.read()
 file.close()
-
-path = os.getcwd() #current working dir
 
 #-----------------------------------------------------------------------------------
 

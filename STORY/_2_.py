@@ -132,7 +132,7 @@ def move(you_curloc, you_prevloc):
         os.system('cls')
         print(df)
         
-        print("MAGE:")
+        print("\nMAGE:")
         print("Very well.")
         print("Here is the test warrior you asked for.")
         print("You can keep it.\n\nPress 'enter' to continue.\n")
@@ -166,7 +166,7 @@ def move(you_curloc, you_prevloc):
     else:
         pass
         
-    if(you_curloc[0] == 0 and you_curloc[1] == 9):
+    if(you_curloc[0] == 9 and you_curloc[1] == 0):
     
         while True:
             try:
@@ -190,6 +190,7 @@ def move(you_curloc, you_prevloc):
         cur.execute(f"update \"siddhanth78/MainGame\".player_progress set story = 3 where p_id = '{player_id}'")
         if("B001" not in ch_ids):
             cur.execute(f"insert into \"siddhanth78/MainGame\".player_characters values('{player_id}', 'B001', 10, 200, 1)")
+            print("\nYou have received 'SAM'! Check your characters for more info.")
         conn.commit()
         os.system(path+"\\STORY\\_3_.py")
 
